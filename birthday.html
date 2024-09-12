@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            background-color: #ff5722; /* Birthday theme color */
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .product {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .product-item {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 250px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            box-sizing: border-box;
+        }
+
+        .product-item img {
+            max-width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .product-item h3 {
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .product-item p {
+            margin: 5px 0;
+            color: #777;
+        }
+
+        .product-item .price {
+            font-weight: bold;
+            color: #ff5722; /* Birthday theme color */
+        }
+
+        .product-item .actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .product-item input[type="number"] {
+            width: 60px;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .product-item button {
+            background-color: #ff5722; /* Birthday theme color */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .product-item button:hover {
+            background-color: #e64a19; /* Darker shade for hover effect */
+        }
+
+        .cart-summary {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .cart-summary h2 {
+            color: #333;
+        }
+
+        .cart-summary p {
+            font-size: 18px;
+            color: #ff5722; /* Birthday theme color */
+            font-weight: bold;
+        }
+
+        .billing-section {
+            display: none;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .billing-section h3 {
+            color: #333;
+        }
+
+        .billing-section button {
+            background-color: green;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .billing-section button:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <h1>Birthday Page</h1>
+        <p><a href="home.html" style="color: white;">Back to Home</a></p>
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="container">
+        <h2>Birthday Celebrations</h2>
+        <div class="product">
+            <!-- Product 1 -->
+            <div class="product-item">
+                <img src="https://i.pinimg.com/564x/0a/78/fd/0a78fdf6d0c31beef8972662d61b3f42.jpg" alt="Description of image">
+                <h3>Birthday Bliss Bouquet</h3>
+                <p class="price">$20.00</p>
+                <div class="actions">
+                    <input type="number" value="1" min="1" id="quantity1">
+                    <button onclick="addToCart(1, 20)">Add to Cart</button>
+                </div>
+            </div>
+            <!-- Product 2 -->
+            <div class="product-item">
+                <img src="https://i.pinimg.com/564x/47/0a/83/470a83ba86df317319645b3012b807c9.jpg" alt="Description of image">
+                <h3>Tropical Birthday Delight</h3>
+                <p class="price">$35.00</p>
+                <div class="actions">
+                    <input type="number" value="1" min="1" id="quantity2">
+                    <button onclick="addToCart(2, 35)">Add to Cart</button>
+                </div>
+            </div>
+            <!-- Product 3 -->
+            <div class="product-item">
+                <img src="https://i.pinimg.com/564x/aa/cf/6d/aacf6d4b1bebef38472f7093655ba285.jpg" alt="Description of image">
+                <h3>Autumn Harvest Blooms</h3>
+                <p class="price">$25.00</p>
+                <div class="actions">
+                    <input type="number" value="1" min="1" id="quantity3">
+                    <button onclick="addToCart(3, 25)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cart Summary -->
+        <div class="cart-summary" id="cart-summary">
+            <h2>Cart Summary</h2>
+            <p id="cart-total">Total: $0</p>
+            <button onclick="proceedToBilling()">Proceed to Billing</button>
+        </div>
+
+        <!-- Billing Section -->
+        <div class="billing-section" id="billing-section">
+            <h3>Billing Information</h3>
+            <p>Your total amount is: <span id="billing-total"></span></p>
+            <button onclick="confirmPayment()">Confirm Payment</button>
+        </div>
+    </div>
+
+    <script>
+        let cartTotal = 0;
+
+        function addToCart(productId, price) {
+            const quantity = document.getElementById(`quantity${productId}`).value;
+            const total = quantity * price;
+            cartTotal += total;
+            document.getElementById('cart-total').innerText = `Total: $${cartTotal}`;
+            alert(`Added ${quantity} of product ${productId} to cart. Total price: $${total}`);
+        }
+
+        function proceedToBilling() {
+            document.getElementById('billing-section').style.display = 'block';
+            document.getElementById('cart-summary').style.display = 'none';
+            document.getElementById('billing-total').innerText = `$${cartTotal}`;
+        }
+
+        function confirmPayment() {
+            alert('Payment confirmed! Thank you for your purchase.');
+        }
+    </script>
+
+</body>
+</html>

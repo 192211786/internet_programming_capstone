@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .billing-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .billing-form label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .billing-form input[type="text"], .billing-form input[type="email"], .billing-form input[type="number"], .billing-form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .billing-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .billing-form button:hover {
+            background-color: #0056b3;
+        }
+        .order-summary {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .order-summary h2 {
+            margin-top: 0;
+        }
+        .order-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .order-summary li {
+            margin-bottom: 10px;
+        }
+        .order-summary li span {
+            font-weight: bold;
+        }
+        .order-summary .total-cost {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .payment-status {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .payment-status.success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Billing & Payment</h1>
+    </div>
+    <div class="container">
+        <form class="billing-form">
+            <h2>Billing Information</h2>
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Enter your full name">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Enter your email">
+            <label for="address">Address</label>
+            <input type="text" id="address" placeholder="Enter your address">
+            <label for="card-number">Credit Card Number</label>
+            <input type="number" id="card-number" placeholder="Enter your card number">
+            <label for="exp-date">Expiry Date</label>
+            <input type="text" id="exp-date" placeholder="MM/YY">
+            <label for="cvv">CVV</label>
+            <input type="number" id="cvv" placeholder="Enter CVV">
+            <button type="submit">Pay Now</button>
+        </form>
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <ul id="order-items">
+                <!-- Item details will be displayed here -->
+            </ul>
+            <div class="total-cost" id="total-cost">
+                <!-- Total cost will be displayed here -->
+            </div>
+        </div>
+        <div class="payment-status" id="payment-status"></div>
+    </div>
+    <script>
+        let cart = [
+            { name: 'Bouquet of Roses', price: 25, quantity: 1 },
+            { name: 'Flower Bouquet', price: 30, quantity: 2 },
+            // Add more items here
+        ];
+
+        const orderItemsContainer = document.getElementById('order-items');
+        const totalCostContainer = document.getElementById('total-cost');
+
+        let totalCost = 0;
+
+        cart.forEach(item => {
+            const itemElement = document.createElement('li');
+            const itemTotal = item.price * item.quantity;
+            itemElement.innerHTML = `<span>${item.name}</span> x ${item.quantity} - $${itemTotal}`;
+            orderItemsContainer.appendChild(itemElement);
+
+            totalCost += itemTotal;
+        });
+
+        totalCostContainer.innerHTML = `Total Cost: $${totalCost}`;
+
+        const paymentStatusContainer = document.getElementById('payment-status');
+        document.querySelector('.billing-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            paymentStatusContainer.innerHTML = '';
+            paymentStatusContainer.classList.remove('success');
+            setTimeout(() => {
+                paymentStatusContainer.innerHTML = 'Your order has been confirmed. Payment done!';
+                paymentStatusContainer.classList.add('success');
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 400px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: #ff6347;
+            font-size: 12px;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Login</h2>
+    <form id="loginForm">
+        <input type="email" id="email" placeholder="Email" required><br>
+        <div class="error" id="emailError"></div>
+        <input type="password" id="password" placeholder="Password" required><br>
+        <div class="error" id="passwordError"></div>
+        <button type="submit" class="button">Login</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        // Get email and password from the form
+        const email = document.getElementById('email').value.toLowerCase();
+        const password = document.getElementById('password').value;
+
+        // Retrieve stored email and password from localStorage (for demo purposes)
+        const storedEmail = localStorage.getItem('email');
+        const storedPassword = localStorage.getItem('password');
+
+        // Simple validation for demo purposes
+        const emailError = document.getElementById('emailError');
+        const passwordError = document.getElementById('passwordError');
+
+        let valid = true;
+
+        if (email !== storedEmail) {
+            emailError.textContent = 'Invalid email.';
+            valid = false;
+        } else {
+            emailError.textContent = '';
+        }
+
+        if (password !== storedPassword) {
+            passwordError.textContent = 'Incorrect password.';
+            valid = false;
+        } else {
+            passwordError.textContent = '';
+        }
+
+        if (valid) {
+            // Redirect to home.html after successful login
+            window.location.href = 'home.html';
+        }
+    });
+</script>
+
+</body>
+</html>

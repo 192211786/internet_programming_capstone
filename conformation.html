@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .confirmation-message {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .confirmation-message h1 {
+            color: #4caf50; /* Green color for success */
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .confirmation-message .tick {
+            font-size: 50px;
+            color: #4caf50;
+            margin: 20px 0;
+        }
+
+        .confirmation-message p {
+            color: #333;
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .confirmation-message button {
+            background-color: #4caf50; /* Green color for success */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .confirmation-message button:hover {
+            background-color: #388e3c; /* Darker shade for hover effect */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="confirmation-message">
+        <div class="tick">&#10003;</div>
+        <h1>Order Confirmed</h1>
+        <p>Your payment has been successfully completed.</p>
+        <button onclick="window.location.href='home.html'">Back to Home</button>
+    </div>
+
+</body>
+</html>

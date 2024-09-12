@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .logout-button {
+            background-color: #dc3545;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .logout-button:hover {
+            background-color: #c82333;
+        }
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .link-box {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            transition: background-color 0.3s ease;
+            color: rgb(255, 255, 255);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .link-box:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        .link-box a {
+            text-decoration: none;
+            color: rgb(255, 255, 255);
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .birthday {
+            background-image: url('https://i.pinimg.com/564x/53/80/c5/5380c52e77d2b4cef6e96163515dfa83.jpg');
+        }
+        .wedding {
+            background-image: url('https://i.pinimg.com/564x/5d/b9/5b/5db95b88798baabf163353b95459e389.jpg');
+        }
+        .anniversary {
+            background-image: url('https://i.pinimg.com/564x/80/0f/22/800f224949dbc4c8687fc43779335d3a.jpg');
+        }
+        .love {
+            background-image: url('https://i.pinimg.com/564x/a3/e0/d6/a3e0d67d94e8c332ff87b18acdfec1bd.jpg');
+        }
+        .billing-button {
+            background-color: #007bff;
+            color: rgb(255, 255, 255);
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .billing-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function logoutUser() {
+            // Simulate clearing session data (if you are using sessions)
+            alert('You have been logged out successfully!');
+            window.location.href = 'register.html'; // Redirect to the registration page after logout
+        }
+    </script>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <h1>Welcome to the Home Page</h1>
+        <!-- Logout Button -->
+        <a href="#" class="logout-button" onclick="logoutUser()">Logout</a>
+    </div>
+
+    <!-- Main Content Section -->
+    <div class="container">
+        <h2>Choose a Category</h2>
+        <div class="links">
+            <!-- Box for Birthday -->
+            <div class="link-box birthday">
+                <a href="birthday.html">Birthday</a>
+            </div>
+
+            <!-- Box for Wedding -->
+            <div class="link-box wedding">
+                <a href="wedding.html">Wedding</a>
+            </div>
+
+            <!-- Box for Anniversary -->
+            <div class="link-box anniversary">
+                <a href="anniversary.html">Anniversary</a>
+            </div>
+
+            <!-- Box for Love -->
+            <div class="link-box love">
+                <a href="love.html">Love</a>
+            </div>
+        </div>
+
+        <a href="billing.html" class="billing-button">Proceed to Billing</a>
+    </div>
+
+</body>
+</html>
